@@ -25,21 +25,13 @@ RUN cat ./devkit_repo >> /etc/pacman.conf
 # And install requirements
 RUN pacman --noconfirm -Syu && \
     pacman --noconfirm -S \
-        llvm \
-        clang \
-        lld \
-        python \
-        python-pip \
-        python-virtualenv \
-        squashfs-tools \
-        base-devel \
         git \
+        pkg-config \
+        make \
         cmake \
-        libx11 \
         vim \
         protobuf \
         python-protobuf \
-        sfml \
         devkitARM \
         switch-pkg-config \
         devkitpro-pkgbuild-helpers \
@@ -61,7 +53,10 @@ RUN pacman --noconfirm -Syu && \
         switch-libopus \
         switch-ffmpeg \
         switch-mbedtls && \
-  pacman --noconfirm -Sc
+  yes | pacman -Scc
+
+# the `pacman --noconfirm -Scc` command
+# does not assume yes on /var/cache/pacman/pkg/
 
 VOLUME ${WORKDIR}
 
