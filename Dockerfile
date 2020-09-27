@@ -40,6 +40,7 @@ RUN pacman --noconfirm -Syu && \
         switch-sdl2 \
         switch-freetype \
         switch-curl \
+        switch-glfw \
         switch-mesa \
         switch-glad \
         switch-glm \
